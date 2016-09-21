@@ -7,12 +7,15 @@ DEFAULT_LOG_LEVEL="INFO" # Available levels: TRACE, DEBUG, INFO (default), WARN,
 DEFAULT_RES="1280x1024x24"
 DEFAULT_DISPLAY=":99"
 DEFAULT_ROBOT_TESTS="false"
+DEFAULT_OUTPUT_DIR="/tmp/"
 
 # Use default if none specified as env var
 LOG_LEVEL=${LOG_LEVEL:-$DEFAULT_LOG_LEVEL}
+OUTPUT_DIR=${OUTPUT_DIR:-$DEFAULT_OUTPUT_DIR}
 RES=${RES:-$DEFAULT_RES}
 DISPLAY=${DISPLAY:-$DEFAULT_DISPLAY}
 ROBOT_TESTS=${ROBOT_TESTS:-$ROBOT_TESTS}
+echo $HOSTS >> /etc/hosts
 
 if [[ "${ROBOT_TESTS}" == "false" ]]; then
   echo "Error: Please specify the robot test or directory as env var ROBOT_TESTS"
@@ -27,7 +30,7 @@ export DISPLAY=${DISPLAY}
 # Execute tests
 echo -e "Executing robot tests at log level ${LOG_LEVEL}"
 
-pybot --loglevel ${LOG_LEVEL} ${ROBOT_TESTS}
+pybot --loglevel ${LOG_LEVEL}  --outputdir ${OUTPUT_DIR} ${ROBOT_TESTS}
 
 # Stop Xvfb
 kill -9 $(pgrep Xvfb)
