@@ -10,17 +10,21 @@ LABEL usage="docker run -e ROBOT_TESTS=/path/to/tests/ --rm -v $(pwd)/path/to/te
 RUN apt-get update -y
 
 RUN apt-get install -y  \
+       build-essential \
        fonts-liberation \
        gconf-service \
        libappindicator1 \
        libasound2 \
        libcurl3 \
+       libffi-dev \
        libgconf-2-4 \
        libindicator7 \
        libnspr4 \
        libnss3 \
        libpango1.0-0 \
+       libssl-dev \
        libxss1 \
+       python-dev \
        python-pip \
        python-pyasn1 \
        python-pyasn1-modules \
@@ -37,7 +41,7 @@ ADD requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
 
 
-RUN wget http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_52.0.2743.116-1_amd64.deb
+RUN wget http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_53.0.2785.143-1_amd64.deb
 RUN dpkg -i google-chrome*.deb
 
 
