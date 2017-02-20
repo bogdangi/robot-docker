@@ -34,7 +34,10 @@ RUN apt-get install -y  \
        && \
     pip install --upgrade pip
 
-RUN wget http://mirror.glendaleacademy.org/chrome/pool/main/g/google-chrome-stable/google-chrome-stable_56.0.2924.87-1_amd64.deb
+
+# Install Google Chrome
+
+RUN wget http://mirror.glendaleacademy.org/chrome/pool/main/g/google-chrome-stable/google-chrome-stable_53.0.2785.143-1_amd64.deb
 RUN dpkg -i google-chrome*.deb
 
 RUN wget -N http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
