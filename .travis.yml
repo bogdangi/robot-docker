@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+- docker
+
+install:
+- docker build -t bogdangi/robot-docker:latest .
+
+script:
+- tests/test_robot_tests.sh
